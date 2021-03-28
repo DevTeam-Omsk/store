@@ -8,18 +8,29 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.squareup.picasso.Picasso;
+
+import java.util.ArrayList;
+
+import Some_objects.Product;
 import space.dorzhu.store.R;
 
 public class CatalogGridAdapter extends BaseAdapter {
     private Context mContext;
+    private ArrayList<Product> data;
+    public CatalogGridAdapter(Context context, ArrayList<Product> data){
+        this.mContext = context;
+        this.data = data;
+    }
+
     @Override
     public int getCount() {
-        return 0;
+        return data.size();
     }
 
     @Override
     public Object getItem(int position) {
-        return null;
+        return getItem(position);
     }
 
     @Override
@@ -29,26 +40,28 @@ public class CatalogGridAdapter extends BaseAdapter {
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-
-        View grid;
-
         if (convertView == null) {
-            grid = new View(mContext);
+            convertView = new View(mContext);
             //LayoutInflater inflater = getLayoutInflater();
             LayoutInflater inflater = (LayoutInflater) mContext.getSystemService( Context.LAYOUT_INFLATER_SERVICE );
-            grid = inflater.inflate(R.layout.cardview, parent, false);
+            convertView = inflater.inflate(R.layout.cardview, parent, false);
         } else {
-            grid = (View) convertView;
+            convertView = (View) convertView;
         }
 
-        ImageView imageView = grid.findViewById(R.id.imageButton);
-        TextView  name = grid.findViewById(R.id.nameproducts);
-        TextView desc=grid.findViewById(R.id.description);
-        TextView price = grid.findViewById(R.id.price);
-        imageView.setImageResource(mThumbIds[position]);
-        name.setText("Картинка "+String.valueOf(position));
-        return grid;
+        ImageView imageView = convertView.findViewById(R.id.photoprod);
+        TextView  name = convertView.findViewById(R.id.nameproducts);
+//        TextView desc= convertView.findViewById(R.id.description);
+        TextView price = convertView.findViewById(R.id.price);
+
+        Product curProduct = data.get(position);
+
+//        imageView.setImageResource(curProduct.getImg());
+        Picasso.get().load(curProduct.getImg()).into(imageView);
+        name.setText(curProduct.getName());
+        price.setText(curProduct.getPrice());
+        return convertView;
     }
 
-    public Integer[] mThumbIds={R.drawable.ic_launcher_background,R.drawable.ic_launcher_foreground};
+
 }

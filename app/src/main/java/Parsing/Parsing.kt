@@ -1,6 +1,7 @@
 package Parsing
 
 import Some_objects.Product
+import android.text.Html
 import org.json.JSONObject
 import org.jsoup.Jsoup
 import org.jsoup.nodes.Entities
@@ -30,7 +31,7 @@ class Parsing {
             // при нажатии на элемент gridView делать парсинг уже другого URL
             // и брать там описание
             //curProduct.description = "в разработке"
-            curProduct.price = item.select("span.ProductCardVerticalPrice__price-current_current-price").first().text()
+            curProduct.price = item.select("span.ProductCardVerticalPrice__price-current_current-price").first().text() + " " + Html.fromHtml(" &#x20bd")
             curProduct.img = item.select("div.ProductCardVertical__picture-container img").attr("src")
             product_list.add(curProduct)
         }
