@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/my_nav"
+    app:startDestination="@id/shop">
+
+    <fragment
+        android:id="@+id/shop"
+        android:name="space.dorzhu.store.Shop"
+        android:label="fragment_shop"
+        tools:layout="@layout/fragment_shop" />
+    <fragment
+        android:id="@+id/explore"
+        android:name="space.dorzhu.store.Explore"
+        android:label="fragment_explore"
+        tools:layout="@layout/fragment_explore" />
+    <fragment
+        android:id="@+id/card"
+        android:name="space.dorzhu.store.Card"
+        android:label="fragment_card"
+        tools:layout="@layout/fragment_card" />
+    <fragment
+        android:id="@+id/favourite"
+        android:name="space.dorzhu.store.Favourite"
+        android:label="fragment_favourite"
+        tools:layout="@layout/fragment_favourite" />
+    <fragment
+        android:id="@+id/account"
+        android:name="space.dorzhu.store.Account"
+        android:label="fragment_account"
+        tools:layout="@layout/fragment_account" />
+</navigation>
