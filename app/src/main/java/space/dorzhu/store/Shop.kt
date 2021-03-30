@@ -9,6 +9,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.GridView
+import android.widget.LinearLayout
+import android.widget.ProgressBar
 import androidx.fragment.app.Fragment
 
 
@@ -37,11 +39,8 @@ class Shop : Fragment() {
             }
         }.execute()
 
-
         return view
     }
-
-
 }
 
 class doAsync(val handler: () -> Unit) : AsyncTask<Void, Void, Void>() {
