@@ -11,4 +11,6 @@
     <color name="new_black">#181725</color>
     <color name="new_gray">#7C7C7C</color>
     <color name="shadow">#F4F5F7</color>
+    <color name="green">#53B175</color>
+    <color name="light_gray">#F2F3F2</color>
 </resources>

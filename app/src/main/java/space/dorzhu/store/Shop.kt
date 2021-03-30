@@ -1,7 +1,10 @@
 package space.dorzhu.store
 
 import Adapters.CatalogGridAdapter
+import Database.DBHelper
 import Parsing.Parsing
+import Some_objects.Product
+import Some_objects.doAsync
 import android.os.AsyncTask
 import android.os.Bundle
 import android.util.Log
@@ -12,42 +15,43 @@ import android.widget.GridView
 import androidx.fragment.app.Fragment
 
 
-
 @Suppress("UNREACHABLE_CODE")
 class Shop : Fragment() {
-
-
+    private val LOG_TAG: String = "TAG"
+    var gridView: GridView? = null
+    var products_list : ArrayList<Product>? = null
+    var gridAdapter : CatalogGridAdapter? = null
     override fun onCreateView(
             inflater: LayoutInflater, container: ViewGroup?,
-            savedInstanceState: Bundle?
+            savedInstanceState: Bundle?,
     ): View? {
         // Inflate the layout for this fragment
         val view = inflater.inflate(R.layout.fragment_shop, container, false)
+
+        context?.deleteDatabase("myDB")
 
         val gridView = view.findViewById<GridView>(R.id.gridview)
 
         doAsync {
             val parser = Parsing()
-            val output = parser.parse()
+            try {
+                products_list = parser.parse()
+            }catch (e: Exception){
+                Log.d(LOG_TAG, e.message.toString())
+            }
+
             activity?.runOnUiThread{
-                for (product in output) {
-                    Log.d("TAG", product.printInfo())
-                }
-                gridView.adapter= CatalogGridAdapter(context, output)
+                gridAdapter = CatalogGridAdapter(context, products_list)
+                gridView?.adapter= gridAdapter
             }
         }.execute()
-
-
         return view
     }
 
-
-}
-
-class doAsync(val handler: () -> Unit) : AsyncTask<Void, Void, Void>() {
-    override fun doInBackground(vararg params: Void?): Void? {
-        handler()
-        return null
+    override fun onResume() {
+        super.onResume()
+        gridAdapter?.notifyDataSetChanged()
     }
+
 }
 

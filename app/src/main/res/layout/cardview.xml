@@ -2,8 +2,9 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/product_wrapper"
     android:layout_width="match_parent"
-    android:layout_height="300dp"
+    android:layout_height="320dp"
     android:background="@drawable/border"
     android:orientation="vertical"
     android:padding="15dp">
@@ -12,9 +13,9 @@
         android:id="@+id/photoprod"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
         android:scaleType="fitCenter"
-        tools:srcCompat="@tools:sample/avatars"
-        android:layout_marginTop="10dp"/>
+        tools:srcCompat="@tools:sample/avatars" />
 
     <TextView
         android:id="@+id/nameproducts"
@@ -22,6 +23,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="30dp"
         android:layout_weight="1"
+        android:fontFamily="@font/gilroy_black"
         android:text="TextView"
         android:textAlignment="viewStart"
         android:textColor="@color/new_black"
@@ -38,22 +40,21 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:fontFamily="@font/gilroy_black"
             android:gravity="center"
             android:text="25$"
-            android:textAlignment="viewStart"
 
+            android:textAlignment="viewStart"
             android:textColor="@color/new_black"
             android:textSize="18sp" />
 
         <ImageButton
-            android:id="@+id/imageButton"
-            android:layout_width="20dp"
+            android:id="@+id/btnAddToCart"
+            android:layout_width="50dp"
             android:layout_height="50dp"
-            android:layout_weight="1"
-            android:background="#00FFFFFF"
-            android:scaleType="fitEnd"
-            android:src="@drawable/button"
-            android:tint="#00FFFFFF" />
+            android:background="@drawable/button"
+            android:textOff=""
+            android:textOn="" />
 
     </LinearLayout>
 
