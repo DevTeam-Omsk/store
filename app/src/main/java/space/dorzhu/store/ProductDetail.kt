@@ -4,8 +4,10 @@ import Parsing.Parsing
 import Some_objects.doAsync
 import android.graphics.Bitmap
 import android.graphics.drawable.BitmapDrawable
+import android.opengl.Visibility
 import android.os.Bundle
 import android.util.Log
+import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.activity_product_detail.*
@@ -31,8 +33,14 @@ class ProductDetail : AppCompatActivity() {
                 tvProductName.text = product.name
                 tvProductPrice.text = product.price
                 tvDescription.text = product.description
+
+                disableProgressBar()
             }
         }.execute()
 
+    }
+
+    private fun disableProgressBar() {
+        main_wrapper.removeView(bar_wrapper)
     }
 }

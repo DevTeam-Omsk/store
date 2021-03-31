@@ -13,6 +13,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.GridView
 import androidx.fragment.app.Fragment
+import kotlinx.android.synthetic.main.fragment_shop.*
 
 
 @Suppress("UNREACHABLE_CODE")
@@ -36,6 +37,9 @@ class Shop : Fragment() {
             val parser = Parsing()
             try {
                 products_list = parser.parse()
+
+                //сохраняю в памяти телфона
+
             }catch (e: Exception){
                 Log.d(LOG_TAG, e.message.toString())
             }
@@ -43,6 +47,7 @@ class Shop : Fragment() {
             activity?.runOnUiThread{
                 gridAdapter = CatalogGridAdapter(context, products_list)
                 gridView?.adapter= gridAdapter
+                disableProgressBar()
             }
         }.execute()
         return view
@@ -51,6 +56,10 @@ class Shop : Fragment() {
     override fun onResume() {
         super.onResume()
         gridAdapter?.notifyDataSetChanged()
+    }
+
+    private fun disableProgressBar() {
+        main_wrapper.removeView(bar_wrapper)
     }
 
 }
