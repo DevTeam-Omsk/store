@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="50dp"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:id="@+id/PhotoInAcc"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_gravity="center"
+            android:layout_marginRight="10dp"
+            tools:srcCompat="@drawable/about_icon" />
+
+        <TextView
+            android:id="@+id/itemSettInAcc"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_weight="1"
+            android:fontFamily="@font/gilroy_black"
+            android:text="Расписание"
+            android:textColor="@color/black"
+            android:textSize="18sp" />
+
+        <ImageView
+            android:id="@+id/backInAcc"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_gravity="center"
+            android:background="#004040FF"
+            app:srcCompat="@drawable/back_arrow"
+            tools:ignore="VectorDrawableCompat" />
+    </LinearLayout>
+
+    <View
+        android:id="@+id/dvider"
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:layout_weight="1"
+        android:background="#E2E2E2" />
+
+</LinearLayout>
+
+
