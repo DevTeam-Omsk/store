@@ -147,14 +147,15 @@
                         android:textSize="14sp" />
                 </LinearLayout>
 
-                <Button
+                <ToggleButton
                     android:id="@+id/btnAdd2Basket"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="30dp"
-                    android:background="@drawable/add2basket"
+                    android:background="@drawable/add_to_basket_wide"
                     android:fontFamily="@font/gilroy_black"
-                    android:text="@string/add_to_basket"
+                    android:textOn="@string/Added"
+                    android:textOff="@string/add_to_basket"
                     android:textColor="#FFFFFF" />
 
             </LinearLayout>
@@ -168,7 +169,8 @@
         android:layout_height="match_parent"
         android:background="#FFFFFF"
         android:gravity="center"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        tools:visibility="gone">
 
         <ProgressBar
             android:id="@+id/progressBar"

@@ -1,6 +1,8 @@
 package space.dorzhu.store
 
+import Adapters.CatalogGridAdapter
 import Parsing.Parsing
+import Some_objects.Product
 import Some_objects.doAsync
 import android.graphics.Bitmap
 import android.graphics.drawable.BitmapDrawable
@@ -14,10 +16,13 @@ import kotlinx.android.synthetic.main.activity_product_detail.*
 
 class ProductDetail : AppCompatActivity() {
     private val LOG_TAG: String = "TAG"
+    var catalogGridAdapter: CatalogGridAdapter? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_product_detail)
+
+        catalogGridAdapter = CatalogGridAdapter(this, ArrayList<Product>())
 
         btnReturn.setOnClickListener { finish() }
 
@@ -33,6 +38,14 @@ class ProductDetail : AppCompatActivity() {
                 tvProductName.text = product.name
                 tvProductPrice.text = product.price
                 tvDescription.text = product.description
+
+                btnAdd2Basket.setOnCheckedChangeListener { buttonView, isChecked ->
+                    if(isChecked) {
+                        catalogGridAdapter!!.add2Cart(product)
+                    } else{
+                       catalogGridAdapter!!.removeFromCart(product.id)
+                    }
+                }
 
                 disableProgressBar()
             }

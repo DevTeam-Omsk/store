@@ -37,6 +37,7 @@ class Parsing {
         val html = Jsoup.parse(doc.toString())
 
         val curProduct = Product()
+        curProduct.id = html.select("div.ProductHeader__product-id").text().split(": ").get(1)
         curProduct.img = html.select("li.PreviewList__li img").attr("src").toString()
         curProduct.name = html.select("h1.Heading.Heading_level_1").text()
         curProduct.description = html.select("div.AboutTab__description-text").text()

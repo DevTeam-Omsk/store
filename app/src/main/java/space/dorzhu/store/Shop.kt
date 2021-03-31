@@ -50,6 +50,7 @@ class Shop : Fragment() {
                 products_list = parser.parse()
             }catch (e: Exception){
                 Log.d(LOG_TAG, e.message.toString())
+                return@doAsync
             }
 
             activity?.runOnUiThread{

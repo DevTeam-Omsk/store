@@ -108,7 +108,7 @@ public class CatalogGridAdapter extends BaseAdapter {
 
 
 
-    private void add2Cart(Product curProduct) {
+    public void add2Cart(Product curProduct) {
         Gson gson = new Gson();
         String inputString = gson.toJson(curProduct);
 
@@ -128,7 +128,7 @@ public class CatalogGridAdapter extends BaseAdapter {
 //        dbHelper.printCartInfo(db);
     }
 
-    private void removeFromCart(String id) {
+    public void removeFromCart(String id) {
         db.execSQL("DELETE FROM in_cart WHERE prod_id = " + id);
         Log.d(LOG_TAG, "row deleted, product id = " + id);
 //        dbHelper.printCartInfo(db);
