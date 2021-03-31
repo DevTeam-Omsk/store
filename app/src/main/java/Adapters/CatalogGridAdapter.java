@@ -10,11 +10,14 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.google.gson.Gson;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
@@ -28,13 +31,18 @@ public class CatalogGridAdapter extends BaseAdapter {
     private static final String LOG_TAG = "TAG";
     private Context mContext;
     private ArrayList<Product> data;
+    private ArrayList<Product> cart_products = new ArrayList<Product>();
     boolean clicked = false;
     // создаем объект для данных
     ContentValues cv = new ContentValues();
+    DBHelper dbHelper;
+    SQLiteDatabase db;
 
     public CatalogGridAdapter(Context context, ArrayList<Product> data){
         this.mContext = context;
         this.data = data;
+        dbHelper = new DBHelper(mContext);
+        db = dbHelper.getWritableDatabase();
     }
 
     @Override
@@ -62,6 +70,7 @@ public class CatalogGridAdapter extends BaseAdapter {
             convertView = (View) convertView;
         }
 
+        Product curProduct = data.get(position);
 
         ImageView imageView = convertView.findViewById(R.id.photoprod);
         TextView  name = convertView.findViewById(R.id.nameproducts);
@@ -69,23 +78,14 @@ public class CatalogGridAdapter extends BaseAdapter {
 
 
 
-        ImageButton btnAddToCart = convertView.findViewById(R.id.btnAddToCart);
-        btnAddToCart.setOnClickListener(new View.OnClickListener(){
-            @SuppressLint("UseCompatLoadingForDrawables")
+        CheckBox btnAddToCart = convertView.findViewById(R.id.btnAddToCart);
+        btnAddToCart.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
-            public void onClick(View v) {
-                if (!clicked){
-                    add2Cart();
-                    btnAddToCart.setImageDrawable(mContext.getResources().getDrawable(R.drawable.btn_added));
-                    clicked = true;
-                }else {
-                    btnAddToCart.setImageDrawable(mContext.getResources().getDrawable(R.drawable.button));
-                    clicked = false;
-                }
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if (isChecked) add2Cart(curProduct);
+                else removeFromCart(curProduct.getId());
             }
         });
-
-        Product curProduct = data.get(position);
 
         LinearLayout product_wrapper = convertView.findViewById(R.id.product_wrapper);
         product_wrapper.setOnClickListener(new View.OnClickListener() {
@@ -98,30 +98,39 @@ public class CatalogGridAdapter extends BaseAdapter {
         });
 
 
-
         Picasso.get().load(curProduct.getImg()).placeholder(R.drawable.product_placeholder).into(imageView);
         name.setText(curProduct.getName());
         price.setText(curProduct.getPrice());
 
-        cv.put("prod_id", curProduct.getId());
 
         return convertView;
     }
 
-    private void add2Cart() {
-        // создаем объект для создания и управления версиями БД
-        DBHelper dbHelper = new DBHelper(mContext);
 
-        // подключаемся к БД
-        SQLiteDatabase db = dbHelper.getWritableDatabase();
+
+    private void add2Cart(Product curProduct) {
+        Gson gson = new Gson();
+        String inputString = gson.toJson(curProduct);
+
+        // извлекаем значение, только не array list а Product.
+        // нужно вставить этот код в фрагмент корзины
+//        Type type = new TypeToken<ArrayList<String>>() {}.getType();
+//
+//        ArrayList<String> finalOutputString = gson.fromJson(outputarray, type);
+
+        cv.clear();
+        cv.put("json_data", inputString);
+        cv.put("prod_id", curProduct.getId());
 
         // вставляем запись и получаем ее ID
-        long rowID = db.insert("in_cart", null, cv);
-        Log.d(LOG_TAG, "row inserted, ID = " + rowID);
-        // закрываем подключение к БД
-        dbHelper.close();
-
+        db.insert("in_cart", null, cv);
+        Log.d(LOG_TAG, "row inserted, product id = " + curProduct.getId());
+//        dbHelper.printCartInfo(db);
     }
 
-
+    private void removeFromCart(String id) {
+        db.execSQL("DELETE FROM in_cart WHERE prod_id = " + id);
+        Log.d(LOG_TAG, "row deleted, product id = " + id);
+//        dbHelper.printCartInfo(db);
+    }
 }

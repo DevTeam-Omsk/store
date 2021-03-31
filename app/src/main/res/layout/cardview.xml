@@ -48,13 +48,11 @@
             android:textColor="@color/new_black"
             android:textSize="18sp" />
 
-        <ImageButton
+        <CheckBox
             android:id="@+id/btnAddToCart"
             android:layout_width="50dp"
             android:layout_height="50dp"
-            android:background="@drawable/button"
-            android:textOff=""
-            android:textOn="" />
+            android:button="@drawable/add2basket" />
 
     </LinearLayout>
 

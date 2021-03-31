@@ -13,7 +13,7 @@ class Parsing {
     fun parse(): ArrayList<Product> {
         val url = "https://www.citilink.ru/catalog/naushniki-s-mikrofonom/"
 
-        val doc = Jsoup.connect(url).get()
+        val doc = Jsoup.connect(url).timeout(10 * 10000).userAgent("Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/88.0.4324.192 Safari/537.36 OPR/74.0.3911.218").get()
         val html = Jsoup.parse(doc.toString())
 
 
@@ -22,7 +22,7 @@ class Parsing {
             val curProduct = Product()
             val arr = JSONObject(item.attr("data-params").toString())
             curProduct.id = arr.get("id").toString()
-            curProduct.name = item.select("a.ProductCardVertical__name").text()
+            curProduct.name = item.select("a.ProductCardVertical__name").text().split(",").first()
             curProduct.price = item.select("div.ProductCardVerticalLayout__wrapper-price span.ProductPrice__price.ProductCardVerticalPrice__price-current__price").text()
             curProduct.img = item.select("div.ProductCardVertical__picture-container img").attr("src")
             curProduct.link2detail = "https://www.citilink.ru" + item.select("a.ProductCardVertical__link").attr("href").toString()
@@ -33,7 +33,7 @@ class Parsing {
 
     fun parseDetail(link2Detail: String): Product {
 
-        val doc = Jsoup.connect(link2Detail).get()
+        val doc = Jsoup.connect(link2Detail).timeout(10 * 10000).userAgent("Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/88.0.4324.192 Safari/537.36 OPR/74.0.3911.218").get()
         val html = Jsoup.parse(doc.toString())
 
         val curProduct = Product()

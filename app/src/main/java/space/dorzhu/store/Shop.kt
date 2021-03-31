@@ -5,7 +5,6 @@ import Database.DBHelper
 import Parsing.Parsing
 import Some_objects.Product
 import Some_objects.doAsync
-import android.os.AsyncTask
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -23,13 +22,25 @@ class Shop : Fragment() {
     var products_list : ArrayList<Product>? = null
     var gridAdapter : CatalogGridAdapter? = null
     override fun onCreateView(
-            inflater: LayoutInflater, container: ViewGroup?,
-            savedInstanceState: Bundle?,
+        inflater: LayoutInflater, container: ViewGroup?,
+        savedInstanceState: Bundle?,
     ): View? {
         // Inflate the layout for this fragment
         val view = inflater.inflate(R.layout.fragment_shop, container, false)
 
-        context?.deleteDatabase("myDB")
+        context?.deleteDatabase("db")
+
+        // создаем объект для создания и управления версиями БД
+        val dbHelper = DBHelper(context)
+
+        // подключаемся к БД
+        val db = dbHelper.writableDatabase
+        Log.d(LOG_TAG, "Fragment shop")
+        dbHelper.printCartInfo(db)
+        // закрываем подключение к БД
+        dbHelper.close()
+
+
 
         val gridView = view.findViewById<GridView>(R.id.gridview)
 
@@ -37,16 +48,19 @@ class Shop : Fragment() {
             val parser = Parsing()
             try {
                 products_list = parser.parse()
-
-                //сохраняю в памяти телфона
-
             }catch (e: Exception){
                 Log.d(LOG_TAG, e.message.toString())
             }
 
             activity?.runOnUiThread{
-                gridAdapter = CatalogGridAdapter(context, products_list)
-                gridView?.adapter= gridAdapter
+                try {
+                    gridAdapter = CatalogGridAdapter(context, products_list)
+                    gridView?.adapter= gridAdapter
+                }catch (e: Exception){
+                    Log.d(LOG_TAG, e.toString())
+                    return@runOnUiThread
+                }
+
                 disableProgressBar()
             }
         }.execute()
