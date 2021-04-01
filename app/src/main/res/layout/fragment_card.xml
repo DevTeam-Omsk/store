@@ -30,6 +30,7 @@
             android:id="@+id/lv"
             android:layout_width="match_parent"
             android:layout_height="587dp"
+            android:layout_weight="1"
             android:divider="#E2E2E2"
             android:dividerHeight="1dp"
             android:paddingTop="10dp">
