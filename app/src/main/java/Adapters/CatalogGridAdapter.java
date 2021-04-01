@@ -112,11 +112,6 @@ public class CatalogGridAdapter extends BaseAdapter {
         Gson gson = new Gson();
         String inputString = gson.toJson(curProduct);
 
-        // извлекаем значение, только не array list а Product.
-        // нужно вставить этот код в фрагмент корзины
-//        Type type = new TypeToken<ArrayList<String>>() {}.getType();
-//
-//        ArrayList<String> finalOutputString = gson.fromJson(outputarray, type);
 
         cv.clear();
         cv.put("json_data", inputString);
@@ -125,12 +120,12 @@ public class CatalogGridAdapter extends BaseAdapter {
         // вставляем запись и получаем ее ID
         db.insert("in_cart", null, cv);
         Log.d(LOG_TAG, "row inserted, product id = " + curProduct.getId());
-//        dbHelper.printCartInfo(db);
+        dbHelper.printCartInfo(db);
     }
 
     public void removeFromCart(String id) {
         db.execSQL("DELETE FROM in_cart WHERE prod_id = " + id);
         Log.d(LOG_TAG, "row deleted, product id = " + id);
-//        dbHelper.printCartInfo(db);
+        dbHelper.printCartInfo(db);
     }
 }

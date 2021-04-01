@@ -1,7 +1,9 @@
 package space.dorzhu.store
 
 import Adapters.AccountRecycleAdapter
+import Database.DBHelper
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -13,6 +15,7 @@ import androidx.recyclerview.widget.RecyclerView
 
 class Account : Fragment() {
 
+    private val LOG_TAG: String = "TAG"
     private var layoutManager:RecyclerView.LayoutManager?=null
     private var adapter:RecyclerView.Adapter<AccountRecycleAdapter.ViewHolder>?=null
 
@@ -22,6 +25,18 @@ class Account : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
 
+
+        context?.deleteDatabase("db")
+
+        // создаем объект для создания и управления версиями БД
+        val dbHelper = DBHelper(context)
+
+        // подключаемся к БД
+        val db = dbHelper.writableDatabase
+        Log.d(LOG_TAG, "Fragment shop")
+        dbHelper.printCartInfo(db)
+        // закрываем подключение к БД
+        dbHelper.close()
 
         var view= inflater.inflate(R.layout.fragment_account, container, false)
 

@@ -5,16 +5,23 @@ import android.text.Html
 import android.util.Log
 import org.json.JSONObject
 import org.jsoup.Jsoup
+import org.jsoup.nodes.Document
+import java.lang.Exception
 
 class Parsing {
     private val LOG_TAG: String = "TAG"
     val product_list = ArrayList<Product>()
-
+    var doc: Document = Document("")
     fun parse(): ArrayList<Product> {
         val url = "https://www.citilink.ru/catalog/naushniki-s-mikrofonom/"
 
-        val doc = Jsoup.connect(url).timeout(10 * 10000).userAgent("Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/88.0.4324.192 Safari/537.36 OPR/74.0.3911.218").get()
-        val html = Jsoup.parse(doc.toString())
+        try {
+            doc = Jsoup.connect(url).timeout(10 * 10000).userAgent("Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/88.0.4324.192 Safari/537.36 OPR/74.0.3911.218").get()
+        }catch (e: Exception){
+            Log.d(LOG_TAG, e.stackTrace.toString())
+        }
+
+        val html = Jsoup.parseBodyFragment(doc.toString())
 
 
         val products = html.select("div.product_data__gtm-js")
@@ -37,7 +44,7 @@ class Parsing {
         val html = Jsoup.parse(doc.toString())
 
         val curProduct = Product()
-        curProduct.id = html.select("div.ProductHeader__product-id").text().split(": ").get(1)
+        curProduct.id = html.select("div.ProductHeader__product-id").text().split(": ")[1]
         curProduct.img = html.select("li.PreviewList__li img").attr("src").toString()
         curProduct.name = html.select("h1.Heading.Heading_level_1").text()
         curProduct.description = html.select("div.AboutTab__description-text").text()

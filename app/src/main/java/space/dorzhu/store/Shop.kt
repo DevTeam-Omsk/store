@@ -5,6 +5,9 @@ import Database.DBHelper
 import Parsing.Parsing
 import Some_objects.Product
 import Some_objects.doAsync
+import android.app.AlertDialog
+import android.app.Dialog
+import android.content.DialogInterface
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -28,28 +31,20 @@ class Shop : Fragment() {
         // Inflate the layout for this fragment
         val view = inflater.inflate(R.layout.fragment_shop, container, false)
 
-        context?.deleteDatabase("db")
-
-        // создаем объект для создания и управления версиями БД
-        val dbHelper = DBHelper(context)
-
-        // подключаемся к БД
-        val db = dbHelper.writableDatabase
-        Log.d(LOG_TAG, "Fragment shop")
-        dbHelper.printCartInfo(db)
-        // закрываем подключение к БД
-        dbHelper.close()
-
-
-
         val gridView = view.findViewById<GridView>(R.id.gridview)
+
+        val builder = AlertDialog.Builder(context)
+        builder.setMessage("Произошла ошибка, проверьте подключение к Интернету и перезапустите приложение")
+        builder.setPositiveButton("Ок", DialogInterface.OnClickListener { dialog, id -> requireActivity().finish() })
+        val dialog: AlertDialog = builder.create()
 
         doAsync {
             val parser = Parsing()
             try {
                 products_list = parser.parse()
             }catch (e: Exception){
-                Log.d(LOG_TAG, e.message.toString())
+                activity?.runOnUiThread { dialog.show() }
+                Log.d(LOG_TAG, "Ошибка в блоке doAsync: ${e.stackTrace} ${e.message} ${e.cause}")
                 return@doAsync
             }
 
