@@ -49,6 +49,7 @@
             android:textSize="18sp" />
 
         <CheckBox
+            android:checked="false"
             android:id="@+id/btnAddToCart"
             android:layout_width="50dp"
             android:layout_height="50dp"

@@ -13,4 +13,7 @@ class Product : Serializable {
     fun printInfo(): String {
         return "\nid: ${id} | название: ${name} | цена: ${price} | описание: ${description} | изображение: ${img} | ссылка на детальную карточку: ${link2detail}\n"
     }
+
+
+
 }
