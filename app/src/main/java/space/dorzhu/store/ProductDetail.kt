@@ -13,6 +13,7 @@ import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.activity_product_detail.*
+import space.dorzhu.store.Shop
 
 class ProductDetail : AppCompatActivity() {
     private val LOG_TAG: String = "TAG"
@@ -43,7 +44,7 @@ class ProductDetail : AppCompatActivity() {
                     if(isChecked) {
                         catalogGridAdapter!!.add2Cart(product)
                     } else{
-                       catalogGridAdapter!!.removeFromCart(product.id)
+                       catalogGridAdapter!!.removeFromCart(product)
                     }
                 }
 

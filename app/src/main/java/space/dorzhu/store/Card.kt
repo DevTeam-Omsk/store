@@ -2,20 +2,15 @@ package space.dorzhu.store
 
 import Adapters.CartListAdapter
 import Database.DBHelper
-import Parsing.Parsing
 import Some_objects.Product
-import Some_objects.doAsync
 import android.database.Cursor
 import android.database.sqlite.SQLiteDatabase
-import android.os.AsyncTask
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ListView
 import androidx.fragment.app.Fragment
-import com.google.gson.Gson
 import org.json.JSONObject
 
 
@@ -62,8 +57,6 @@ class Card : Fragment() {
                 product.name =  jsonObject.get("name").toString()
                 product.img =  jsonObject.get("img").toString()
                 product.price =  jsonObject.get("price").toString()
-                product.link2detail =  jsonObject.get("link2detail").toString()
-
                 cart_products.add(product)
             } while (c.moveToNext())
         }
