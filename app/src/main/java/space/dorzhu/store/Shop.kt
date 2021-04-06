@@ -2,13 +2,13 @@ package space.dorzhu.store
 
 import Adapters.CatalogGridAdapter
 import Database.DBHelper
+import Parsing.JsonToArrayList
 import Parsing.Parsing
 import Some_objects.Product
 import Some_objects.doAsync
 import android.annotation.SuppressLint
 import android.app.AlertDialog
 import android.content.ContentValues
-import android.database.Cursor
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -19,7 +19,6 @@ import android.widget.GridView
 import android.widget.LinearLayout
 import androidx.fragment.app.Fragment
 import com.google.gson.Gson
-import org.json.JSONObject
 
 // 1. Скачать каталог через парсинг ( have_catalog = false )
 // 2. Сохранить каталог в бд ( have_catalog = true )
@@ -74,55 +73,19 @@ class Shop : Fragment() {
     }
 
 
-    /*Извлечение каталога из БД*/
-    private fun fetchFromDb(c: Cursor): ArrayList<Product> {
-        val products = ArrayList<Product>()
-        do {
-            val idColJSON: Int = c.getColumnIndex("json_data")
-            val curProduct = Product()
-            val json_object = JSONObject(c.getString(idColJSON))
-
-            curProduct.id = json_object.get("id").toString()
-            curProduct.name = json_object.get("name").toString()
-            curProduct.price = json_object.get("price").toString()
-            curProduct.img = json_object.get("img").toString()
-            curProduct.description = null
-            curProduct.link2detail = json_object.get("link2detail").toString()
-
-            products.add(curProduct)
-        } while (c.moveToNext())
-
-        return products
-    }
-
-    override fun onResume() {
-        super.onResume()
-        val dbHelper = DBHelper(context)
-        val db = dbHelper.writableDatabase
-        val c = db.query("catalog", null, null, null, null, null, null)
-
-        gridAdapter?.notifyDataSetChanged()
-        if (c.moveToFirst()) {
-            gridView?.adapter = CatalogGridAdapter(context, fetchFromDb(c))
-            disableProgressBar()
-        } else {
-            parseFromInternet()
-        }
-    }
-
     override fun onStart() {
         super.onStart()
         val dbHelper = DBHelper(context)
         val db = dbHelper.writableDatabase
-        val c = db.query("catalog", null, null, null, null, null, null)
 
         gridAdapter?.notifyDataSetChanged()
-        if (c.moveToFirst()) {
-            gridView?.adapter = CatalogGridAdapter(context, fetchFromDb(c))
+
+        val products = JsonToArrayList(requireContext()).getCatalogFromDb()
+
+        if (products.size != 0){
+            gridView?.adapter = CatalogGridAdapter(context, products)
             disableProgressBar()
-        } else {
-            parseFromInternet()
-        }
+        } else parseFromInternet()
     }
 
     /*Парсинг каталога с сайта ситилинк*/
