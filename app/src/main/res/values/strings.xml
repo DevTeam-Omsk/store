@@ -10,4 +10,16 @@
     <string name="product_detail">Apples are nutritious. Apples may be good for weight loss. apples may be good for your heart. As part of a healtful and varied diet.</string>
     <string name="product_detail_title">Product Detail</string>
     <string name="add_to_basket">Add To Basket</string>
+
+
+    <string-array name="delivery">
+        <item>Pickup</item>
+        <item>Courier</item>
+    </string-array>
+    <string-array name="pament">
+        <item>Visa</item>
+        <item>Mastercard</item>
+        <item>PayPal</item>
+        <item>ApplePay</item>
+    </string-array>
 </resources>

@@ -25,7 +25,7 @@ class DBHelper(context: Context?) : SQLiteOpenHelper(context, "db", null, 3) {
 
     fun printCartInfo(db: SQLiteDatabase){
         // делаем запрос всех данных из таблицы in_cart, получаем Cursor
-        val c: Cursor = db.query("in_cart", null, null, null, null, null, null)
+            val c: Cursor = db.query("in_cart", null, null, null, null, null, null)
 
         // ставим позицию курсора на первую строку выборки
         // если в выборке нет строк, вернется false

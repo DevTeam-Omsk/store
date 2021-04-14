@@ -21,7 +21,15 @@ class AccountRecycleAdapter:RecyclerView.Adapter<AccountRecycleAdapter.ViewHolde
     }
 
     private var title= arrayOf("Orders","My Detalis","Delivery Address","Payment Methods","Promo Cord","Notifecations","Help","About ")
-    private var images = arrayOf(R.drawable.orders_icon,R.drawable.my_detalis,R.drawable.delicery_address,R.drawable.vector_icon,R.drawable.promo_cord_icon,R.drawable.bell_icon,R.drawable.help_icon,R.drawable.about_icon)
+    private var images = arrayOf(
+            R.drawable.orders_icon,
+            R.drawable.my_detalis,
+            R.drawable.delicery_address,
+            R.drawable.vector_icon,
+            R.drawable.promo_cord_icon,
+            R.drawable.bell_icon,
+            R.drawable.help_icon,
+            R.drawable.about_icon)
 
 
 

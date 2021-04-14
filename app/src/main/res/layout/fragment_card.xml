@@ -45,7 +45,7 @@
             android:orientation="vertical">
 
             <Button
-                android:id="@+id/button4"
+                android:id="@+id/checkout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -53,7 +53,8 @@
                 android:fontFamily="@font/gilroy_black"
                 android:padding="10dp"
                 android:text="Go to Checkout"
-                android:textColor="#FCFCFC" />
+                android:textColor="#FCFCFC"
+                tools:ignore="OnClick" />
 
         </LinearLayout>
 
