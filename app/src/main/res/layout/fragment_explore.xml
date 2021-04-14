@@ -6,18 +6,79 @@
     android:layout_height="match_parent"
     tools:context=".Explore">
 
-    <!-- TODO: Update blank fragment layout -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical">
-        <TextView
+        android:orientation="vertical"
+        android:padding="15dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/explore_line_border"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp">
+
+            <ImageButton
+                android:id="@+id/btn_search"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.2"
+                android:background="#00FFFFFF"
+                android:src="@drawable/loop"
+                android:tint="#00FFFFFF" />
+
+            <EditText
+                android:id="@+id/et_search"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:ems="10"
+                android:fontFamily="@font/gilroy_black"
+                android:hint="Enter a product name"
+                android:inputType="textPersonName"
+                android:textAlignment="viewStart"
+                android:textColor="@color/new_black"
+                android:textColorHint="@color/new_black"
+                android:textSize="18sp" />
+
+            <ImageButton
+                android:id="@+id/btn_delete_all"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.2"
+                android:background="#00FFFFFF"
+                android:src="@drawable/icon_delete_all"
+                android:tint="#00FFFFFF" />
+        </LinearLayout>
+
+        <FrameLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:text="Explore"
-            android:gravity="center"
-            android:fontFamily="@font/gilroy_black"
-            android:layout_gravity="center"/>
+            android:layout_marginTop="10dp"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/tvNotFound"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center|top"
+                android:fontFamily="@font/gilroy_black"
+                android:text="Ничего не найдено"
+                android:textAppearance="@style/TextAppearance.AppCompat.Large"
+                android:textColor="@color/green"
+                android:textSize="24sp"
+                android:visibility="gone" />
+
+            <GridView
+                android:id="@+id/list"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:numColumns="2" />
+
+        </FrameLayout>
 
     </LinearLayout>
 

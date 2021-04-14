@@ -37,13 +37,14 @@
         style="@style/Widget.BottomNavigationView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:visibility="visible"
+        app:elevation="16dp"
         app:itemIconTint="@drawable/selector"
         app:itemTextColor="@drawable/selector"
-        android:background="@color/white"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintEnd_toStartOf="parent"
-        app:menu="@menu/bottom_menu"
-        app:elevation="16dp"/>
+        app:menu="@menu/bottom_menu" />
 
 </LinearLayout>

@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Card">
+    tools:context=".Cart">
 
     <!-- TODO: Update blank fragment layout -->
 
@@ -45,7 +45,7 @@
             android:orientation="vertical">
 
             <Button
-                android:id="@+id/checkout"
+                android:id="@+id/btn_buy"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -53,8 +53,7 @@
                 android:fontFamily="@font/gilroy_black"
                 android:padding="10dp"
                 android:text="Go to Checkout"
-                android:textColor="#FCFCFC"
-                tools:ignore="OnClick" />
+                android:textColor="#FCFCFC" />
 
         </LinearLayout>
 

@@ -23,8 +23,6 @@ class Account : Fragment() {
             inflater: LayoutInflater, container: ViewGroup?,
             savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
-
 
         context?.deleteDatabase("db")
 
@@ -42,16 +40,10 @@ class Account : Fragment() {
 
         val rwAccountList =view.findViewById<RecyclerView>(R.id.rwAccountList)
 
-       // layoutManager = LinearLayoutManager(requireContext())
         layoutManager=LinearLayoutManager(requireContext())
         rwAccountList.layoutManager=layoutManager
         adapter=AccountRecycleAdapter()
         rwAccountList.adapter=adapter
-//        val dividerItemDecoration: DividerItemDecoration = DividerItemDecoration(rwAccountList.getContext(),
-//                (layoutManager as LinearLayoutManager).getOrientation())
-//        rwAccountList.addItemDecoration(dividerItemDecoration)
-
-
 
         return view
 

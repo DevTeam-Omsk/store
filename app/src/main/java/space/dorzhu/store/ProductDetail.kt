@@ -13,6 +13,8 @@ import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.activity_product_detail.*
+import space.dorzhu.store.Shop
+import java.lang.Exception
 
 class ProductDetail : AppCompatActivity() {
     private val LOG_TAG: String = "TAG"
@@ -29,26 +31,32 @@ class ProductDetail : AppCompatActivity() {
         val link2Detail = intent.getStringExtra("link2Detail")
 
         doAsync {
-            val parser = Parsing()
-            val product = parser.parseDetail(link2Detail!!)
-            this.runOnUiThread{
+            try {
+                val parser = Parsing()
+                val product = parser.parseDetail(link2Detail!!)
+                this.runOnUiThread{
+                    Picasso.get().load(product.img).fit().centerInside()
+                        .placeholder(R.drawable.product_placeholder).into(productImage)
+                    tvProductName.text = product.name
+                    tvProductPrice.text = product.price
+                    tvDescription.text = product.description
 
-                Picasso.get().load(product.img).fit().centerInside()
-                    .placeholder(R.drawable.product_placeholder).into(productImage)
-                tvProductName.text = product.name
-                tvProductPrice.text = product.price
-                tvDescription.text = product.description
-
-                btnAdd2Basket.setOnCheckedChangeListener { buttonView, isChecked ->
-                    if(isChecked) {
-                        catalogGridAdapter!!.add2Cart(product)
-                    } else{
-                       catalogGridAdapter!!.removeFromCart(product.id)
+                    btnAdd2Basket.setOnCheckedChangeListener { buttonView, isChecked ->
+                        if(isChecked) {
+                            catalogGridAdapter!!.add2Cart(product)
+                        } else{
+                            catalogGridAdapter!!.removeFromCart(product)
+                        }
                     }
-                }
 
-                disableProgressBar()
+                    disableProgressBar()
+                }
             }
+            catch (e: Exception){
+                Log.d(LOG_TAG, "Ошибка в детальной карточке товара: ${e.message}")
+            }
+
+
         }.execute()
 
     }
