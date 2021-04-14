@@ -2,7 +2,7 @@ package space.dorzhu.store
 
 import androidx.test.core.app.ActivityScenario
 import androidx.test.espresso.Espresso.onView
-import androidx.test.espresso.action.ViewActions.click
+import androidx.test.espresso.action.ViewActions.*
 import androidx.test.espresso.assertion.ViewAssertions.matches
 import androidx.test.espresso.matcher.ViewMatchers.isDisplayed
 import androidx.test.espresso.matcher.ViewMatchers.withId
@@ -26,12 +26,21 @@ class CartTest{
 
     @Test
     fun successfullyDialog_inView(){
+        onView(withId(R.id.edName)).perform(typeText("Sir. Grek"))
+        onView(withId(R.id.edPhone)).perform(typeText("edPhone"))
+        onView(withId(R.id.edAddress)).perform(typeText("Omsk"))
+        onView(withId(R.id.edCreditCard)).perform(typeText("87987897489789"), closeSoftKeyboard())
+
         onView(withId(R.id.button)).perform(click())
         onView(withId(R.id.succeccfull_wrapper)).check(matches(isDisplayed()))
     }
 
     @Test
     fun btnContinueShoppingChecking(){
+        onView(withId(R.id.edName)).perform(typeText("Sir. Grek"))
+        onView(withId(R.id.edPhone)).perform(typeText("edPhone"))
+        onView(withId(R.id.edAddress)).perform(typeText("Omsk"))
+        onView(withId(R.id.edCreditCard)).perform(typeText("87987897489789"), closeSoftKeyboard())
         onView(withId(R.id.button)).perform(click())
         onView(withId(R.id.backToShop)).perform(click())
         onView(withId(R.id.main_wrapper)).check(matches(isDisplayed()))

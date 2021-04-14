@@ -9,8 +9,6 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Adapter;
-import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
@@ -20,17 +18,12 @@ import android.widget.Toast;
 
 import com.squareup.picasso.Picasso;
 
-import org.jsoup.Connection;
-import org.w3c.dom.Text;
 
 import java.util.ArrayList;
-import java.util.Objects;
+
 
 import Database.DBHelper;
 import Some_objects.Product;
-import space.dorzhu.store.Card;
-import space.dorzhu.store.MainActivity;
-import space.dorzhu.store.ProductDetail;
 import space.dorzhu.store.R;
 
 public class CartListAdapter extends BaseAdapter {
