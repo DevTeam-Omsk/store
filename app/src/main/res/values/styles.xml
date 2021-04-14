@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="buy_form_label">
+        <item name="android:fontFamily">@font/gilroy_black</item>
+        <item name="android:textAppearance">@style/TextAppearance.AppCompat.Large</item>
+        <item name="android:layout_marginTop">15dp</item>
+    </style>
+
+    <style name="buy_form_edit" parent="android:Widget.Material.EditText">
+        <item name="android:ems">10</item>
+        <item name="android:fontFamily">@font/gilroy_black</item>
+        <item name="android:inputType">textPersonName</item>
+        <item name="android:textAppearance">@style/TextAppearance.AppCompat.Medium</item>
+        <item name="android:textSize">14sp</item>
+        <item name="android:layout_marginTop">10dp</item>
+    </style>
+</resources>

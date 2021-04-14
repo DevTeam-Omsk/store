@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:background="@color/green"
+    android:orientation="vertical"
+    android:padding="30dp"
+    android:id="@+id/buy_form_wrapper">
+
+    <TextView
+        android:id="@+id/tvName"
+        style="@style/buy_form_label"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Your name" />
+
+    <EditText
+        android:id="@+id/edName"
+        style="@style/buy_form_edit"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Sir. Grek" />
+
+    <TextView
+        android:id="@+id/tvNumber"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Phone"
+        style="@style/buy_form_label"/>
+
+    <EditText
+        android:id="@+id/edPhone"
+        style="@style/buy_form_edit"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="+7 (XXX) XXX XX XX"
+        android:inputType="phone" />
+
+    <TextView
+        android:id="@+id/tvAddress"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Address"
+        style="@style/buy_form_label"/>
+
+    <EditText
+        android:id="@+id/edAddress"
+        style="@style/buy_form_edit"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="Omsk, Amur district"
+        android:inputType="textPostalAddress" />
+
+    <TextView
+        android:id="@+id/tvCreditCard"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Сredit card"
+        style="@style/buy_form_label"/>
+
+    <EditText
+        android:id="@+id/edCreditCard"
+        style="@style/buy_form_edit"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="XXXX XXXX XXXX XXXX"
+        android:inputType="number" />
+
+    <TextView
+        android:id="@+id/tvSumOfOrder"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Count: 12 000 $"
+        style="@style/buy_form_label"/>
+
+    <Button
+        android:id="@+id/button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/detail_image_border"
+        android:fontFamily="@font/gilroy_black"
+        android:text="Buy"
+        android:textAppearance="@style/TextAppearance.AppCompat.Large"
+        android:textColor="@color/green" />
+</LinearLayout>

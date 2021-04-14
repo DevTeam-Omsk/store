@@ -16,10 +16,10 @@
         android:label="fragment_explore"
         tools:layout="@layout/fragment_explore" />
     <fragment
-        android:id="@+id/card"
-        android:name="space.dorzhu.store.Card"
+        android:id="@+id/cart"
+        android:name="space.dorzhu.store.Cart"
         android:label="fragment_card"
-        tools:layout="@layout/fragment_card" />
+        tools:layout="@layout/fragment_cart" />
     <fragment
         android:id="@+id/favourite"
         android:name="space.dorzhu.store.Favourite"

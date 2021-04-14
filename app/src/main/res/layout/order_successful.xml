@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/succeccfull_wrapper"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/green"
+    android:gravity="center"
+    android:orientation="vertical"
+    android:padding="100dp">
+
+    <TextView
+        android:id="@+id/tvSuccesfull"
+        style="@style/buy_form_label"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="Successfully" />
+
+    <Button
+        android:id="@+id/backToShop"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:background="@drawable/detail_image_border"
+        android:padding="15dp"
+        android:text="Continue shopping"
+        android:textColor="@color/green" />
+</LinearLayout>
