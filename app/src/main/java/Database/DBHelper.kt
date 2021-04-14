@@ -8,7 +8,7 @@ import android.database.sqlite.SQLiteOpenHelper
 import android.util.Log
 
 
-class DBHelper(context: Context?) : SQLiteOpenHelper(context, "db", null, 4) {
+class DBHelper(context: Context?) : SQLiteOpenHelper(context, "db", null, 5) {
     private val LOG_TAG: String = "TAG"
 
     override fun onCreate(db: SQLiteDatabase) {

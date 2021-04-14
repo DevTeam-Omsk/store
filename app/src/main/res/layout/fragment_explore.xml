@@ -54,11 +54,23 @@
                 android:tint="#00FFFFFF" />
         </LinearLayout>
 
-        <LinearLayout
+        <FrameLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_marginTop="10dp"
             android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/tvNotFound"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center|top"
+                android:fontFamily="@font/gilroy_black"
+                android:text="Ничего не найдено"
+                android:textAppearance="@style/TextAppearance.AppCompat.Large"
+                android:textColor="@color/green"
+                android:textSize="24sp"
+                android:visibility="gone" />
 
             <GridView
                 android:id="@+id/list"
@@ -66,7 +78,7 @@
                 android:layout_height="match_parent"
                 android:numColumns="2" />
 
-        </LinearLayout>
+        </FrameLayout>
 
     </LinearLayout>
 
