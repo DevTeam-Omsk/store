@@ -15,11 +15,11 @@ class DBHelper(context: Context?) : SQLiteOpenHelper(context, "db", null, 5) {
         Log.d(LOG_TAG, "--- onCreate database ---")
         // создаем таблицу с полями
         db.execSQL(
-            "create table in_cart ("
-                    + "id integer primary key autoincrement,"
-                    + "json_data text,"
-                    + "prod_id text"
-                    + ");"
+                "create table in_cart ("
+                        + "id integer primary key autoincrement,"
+                        + "json_data text,"
+                        + "prod_id text"
+                        + ");"
         )
 
         db.execSQL(
@@ -44,9 +44,9 @@ class DBHelper(context: Context?) : SQLiteOpenHelper(context, "db", null, 5) {
             do {
                 // получаем значения по номерам столбцов и пишем все в лог
                 Log.d(
-                    LOG_TAG,
-                    "\nprod_id = " + c.getString(prodId).toString() +
-                            "\njsonData = " + c.getString(jsonData).toString()
+                        LOG_TAG,
+                        "\nprod_id = " + c.getString(prodId).toString() +
+                                "\njsonData = " + c.getString(jsonData).toString()
                 )
                 // переход на следующую строку
                 // а если следующей нет (текущая - последняя), то false - выходим из цикла
@@ -76,5 +76,9 @@ class DBHelper(context: Context?) : SQLiteOpenHelper(context, "db", null, 5) {
         c.close()
     }
 
-    override fun onUpgrade(db: SQLiteDatabase, oldVersion: Int, newVersion: Int) {}
+    override fun onUpgrade(db: SQLiteDatabase, oldVersion: Int, newVersion: Int) {
+        if(newVersion>oldVersion){
+
+        }
+    }
 }

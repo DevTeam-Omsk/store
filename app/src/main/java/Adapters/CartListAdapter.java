@@ -24,6 +24,7 @@ import java.util.ArrayList;
 
 import Database.DBHelper;
 import Some_objects.Product;
+import space.dorzhu.store.MainActivity;
 import space.dorzhu.store.R;
 
 public class CartListAdapter extends BaseAdapter {
@@ -116,8 +117,8 @@ public class CartListAdapter extends BaseAdapter {
            public void onClick(View v) {
 //               db.execSQL("DELETE FROM in_cart WHERE prod_id = " + curProduct.getId());
 //               db.delete("in_cart","id = "+curProduct.getId(),null);
-               db.delete("in_cart","id = "+curProduct.getId(), null);
-               Toast.makeText(mContext,"КУ",Toast.LENGTH_SHORT).show();
+               db.delete("in_cart","prod_id = "+curProduct.getId(), null);
+               dbHelper.printCartInfo(db);
            }
        });
 

@@ -41,7 +41,7 @@
                 android:inputType="textPersonName"
                 android:textAlignment="viewStart"
                 android:textColor="@color/new_black"
-                android:textColorHint="@color/new_black"
+                android:textColorHint="@color/gray"
                 android:textSize="18sp" />
 
             <ImageButton
@@ -76,7 +76,9 @@
                 android:id="@+id/list"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:numColumns="2" />
+                android:numColumns="2"
+                android:horizontalSpacing="15dp"
+                android:verticalSpacing="20dp"/>
 
         </FrameLayout>
 
