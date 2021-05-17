@@ -19,18 +19,22 @@ import android.widget.Toast;
 import com.squareup.picasso.Picasso;
 
 
+import java.time.DayOfWeek;
+import java.time.LocalDate;
+import java.time.format.TextStyle;
 import java.util.ArrayList;
+import java.util.Locale;
 
 
 import Database.DBHelper;
 import Some_objects.Product;
+import space.dorzhu.store.Cart;
 import space.dorzhu.store.MainActivity;
 import space.dorzhu.store.R;
 
 public class CartListAdapter extends BaseAdapter {
     private Context mContext;
     private ArrayList<Product> data;
-    ArrayAdapter <String>adapter;
     DBHelper dbHelper;
     int count=1;
     SQLiteDatabase db;
@@ -67,7 +71,6 @@ public class CartListAdapter extends BaseAdapter {
             convertView = (View) convertView;
         }
 
-        ListView listView= convertView.findViewById(R.id.lv);
         ImageView plus  = convertView.findViewById(R.id.plus);
         ImageView minus = convertView.findViewById(R.id.minus);
         ImageView remove = convertView.findViewById(R.id.remove);
@@ -119,11 +122,10 @@ public class CartListAdapter extends BaseAdapter {
 //               db.delete("in_cart","id = "+curProduct.getId(),null);
                db.delete("in_cart","prod_id = "+curProduct.getId(), null);
                dbHelper.printCartInfo(db);
+               dbHelper.updateList(Cart.Companion.getListview(),mContext);
+               dbHelper.printCartInfo(db);
            }
        });
-
      return convertView;
     }
-
-
 }

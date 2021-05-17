@@ -1,13 +1,18 @@
 package Database
 
+import Adapters.CartListAdapter
+import Parsing.JsonToArrayList
+import Some_objects.Product
 import android.content.Context
 import android.database.Cursor
 import android.database.sqlite.SQLiteDatabase
 
 import android.database.sqlite.SQLiteOpenHelper
 import android.util.Log
+import android.widget.ListView
 
 
+@Suppress("UNUSED_VALUE")
 class DBHelper(context: Context?) : SQLiteOpenHelper(context, "db", null, 5) {
     private val LOG_TAG: String = "TAG"
 
@@ -80,5 +85,16 @@ class DBHelper(context: Context?) : SQLiteOpenHelper(context, "db", null, 5) {
         if(newVersion>oldVersion){
 
         }
+    }
+
+    fun updateList( list: ListView, context: Context?){
+        var  adapter = CartListAdapter(context,fetchproductFromCart(context!!))
+        adapter.notifyDataSetChanged()
+        list.adapter=adapter
+        list.deferNotifyDataSetChanged()
+    }
+
+    fun fetchproductFromCart(context: Context?): ArrayList<Product> {
+        return JsonToArrayList(context!!).getCartFromDb()
     }
 }
