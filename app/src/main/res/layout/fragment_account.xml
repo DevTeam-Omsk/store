@@ -56,6 +56,17 @@
                         android:text="Sergek2002mail.ru"
                         android:textColor="#7C7C7C"
                         android:textSize="16sp" />
+
+                    <TextView
+                        android:id="@+id/tvDisount"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="30dp"
+                        android:fontFamily="@font/gilroy_black"
+                        android:text="Ваша скидка: 0%"
+                        android:textColor="#181725"
+                        android:textSize="18sp"
+                        android:textStyle="bold" />
                 </LinearLayout>
             </LinearLayout>
 

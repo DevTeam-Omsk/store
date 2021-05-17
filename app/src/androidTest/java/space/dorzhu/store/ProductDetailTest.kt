@@ -27,7 +27,4 @@ class ProductDetailTest{
             .check(matches(withEffectiveVisibility(ViewMatchers.Visibility.VISIBLE))) // method 2
     }
 
-
-
-
 }

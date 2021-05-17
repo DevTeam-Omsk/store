@@ -2,15 +2,22 @@ package space.dorzhu.store
 
 import Adapters.AccountRecycleAdapter
 import Database.DBHelper
+import Some_objects.DiscountCalculator
+import android.os.Build
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.TextView
+import androidx.annotation.RequiresApi
 import androidx.fragment.app.Fragment
-import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import kotlinx.android.synthetic.main.fragment_account.*
+import java.time.DayOfWeek
+import java.time.LocalDate
+import java.util.*
 
 
 class Account : Fragment() {
@@ -19,9 +26,10 @@ class Account : Fragment() {
     private var layoutManager:RecyclerView.LayoutManager?=null
     private var adapter:RecyclerView.Adapter<AccountRecycleAdapter.ViewHolder>?=null
 
+    @RequiresApi(Build.VERSION_CODES.O)
     override fun onCreateView(
-            inflater: LayoutInflater, container: ViewGroup?,
-            savedInstanceState: Bundle?
+        inflater: LayoutInflater, container: ViewGroup?,
+        savedInstanceState: Bundle?
     ): View? {
 
         context?.deleteDatabase("db")
@@ -45,10 +53,19 @@ class Account : Fragment() {
         adapter=AccountRecycleAdapter()
         rwAccountList.adapter=adapter
 
+        var dayOfWeek = Date().toString().substring(0, 3)
+
+
+        System.out.println("dayOfWeek = $dayOfWeek")
+
+        val discCalculator = DiscountCalculator()
+        val curDayDiscount = discCalculator.calculate(dayOfWeek)
+
+
+        val tvDisount = view.findViewById<TextView>(R.id.tvDisount)
+        tvDisount.setText("Ваша скидка: $curDayDiscount%")
+
         return view
 
     }
-
-
-
 }

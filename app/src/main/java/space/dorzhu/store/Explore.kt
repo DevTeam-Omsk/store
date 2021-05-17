@@ -3,13 +3,10 @@ package space.dorzhu.store
 import Adapters.CatalogGridAdapter
 import Parsing.JsonToArrayList
 import Some_objects.Product
-import android.opengl.Visibility
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
-import androidx.core.view.size
 import androidx.fragment.app.Fragment
 import kotlinx.android.synthetic.main.fragment_explore.*
 import java.util.*

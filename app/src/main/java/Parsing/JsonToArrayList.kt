@@ -5,6 +5,7 @@ import Some_objects.Product
 import android.content.Context
 import android.database.Cursor
 import org.json.JSONObject
+import space.dorzhu.store.MainActivity
 
 class JsonToArrayList(context: Context) {
     private val products = ArrayList<Product>()
