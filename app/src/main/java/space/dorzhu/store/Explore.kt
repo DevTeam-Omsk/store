@@ -18,6 +18,7 @@ import java.util.*
 class Explore : Fragment() {
     var products: ArrayList<Product>? = null
 //    private var et: EditText? = null
+    //
     override fun onCreateView(
             inflater: LayoutInflater, container: ViewGroup?,
             savedInstanceState: Bundle?,
