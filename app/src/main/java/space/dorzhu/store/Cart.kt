@@ -26,8 +26,10 @@ import org.json.JSONObject
 class Cart : Fragment() {
 
     val cart_products = ArrayList<Product>()
+    companion object{
+        var listview : ListView? = null
 
-
+    }
     @RequiresApi(Build.VERSION_CODES.LOLLIPOP)
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -35,9 +37,7 @@ class Cart : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         val view = inflater.inflate(R.layout.fragment_cart, container, false)
-
-        val listview = view?.findViewById<ListView>(R.id.lv)
-
+        listview=view.findViewById(R.id.lv)
         val dbHelper = DBHelper(context)
         val db = dbHelper.writableDatabase
 
@@ -50,7 +50,7 @@ class Cart : Fragment() {
         btn_buy.setOnClickListener {
             showBuyForm(view)
         }
-
+        dbHelper.printCartInfo(db)
        return view
 
     }
@@ -122,6 +122,5 @@ class Cart : Fragment() {
         }
         c.close()
     }
-
 
 }
