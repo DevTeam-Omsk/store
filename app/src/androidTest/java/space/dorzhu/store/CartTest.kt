@@ -27,7 +27,7 @@ class CartTest{
     @Test
     fun successfullyDialog_inView(){
         onView(withId(R.id.edName)).perform(typeText("Sir. Grek"))
-        onView(withId(R.id.edPhone)).perform(typeText("edPhone"))
+        onView(withId(R.id.edPhone)).perform(typeText("88005553535"))
         onView(withId(R.id.edAddress)).perform(typeText("Omsk"))
         onView(withId(R.id.edCreditCard)).perform(typeText("87987897489789"), closeSoftKeyboard())
 
@@ -38,7 +38,7 @@ class CartTest{
     @Test
     fun btnContinueShoppingChecking(){
         onView(withId(R.id.edName)).perform(typeText("Sir. Grek"))
-        onView(withId(R.id.edPhone)).perform(typeText("edPhone"))
+        onView(withId(R.id.edPhone)).perform(typeText("88005553535"))
         onView(withId(R.id.edAddress)).perform(typeText("Omsk"))
         onView(withId(R.id.edCreditCard)).perform(typeText("87987897489789"), closeSoftKeyboard())
         onView(withId(R.id.button)).perform(click())

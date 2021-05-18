@@ -13,4 +13,5 @@
     <color name="shadow">#F4F5F7</color>
     <color name="green">#53B175</color>
     <color name="light_gray">#F2F3F2</color>
+    <color name="tranparent">#00F44336</color>
 </resources>

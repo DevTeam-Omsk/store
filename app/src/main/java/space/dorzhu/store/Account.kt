@@ -9,6 +9,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import android.widget.TextView
 import androidx.annotation.RequiresApi
 import androidx.fragment.app.Fragment
@@ -32,7 +33,7 @@ class Account : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
 
-        context?.deleteDatabase("db")
+
 
         // создаем объект для создания и управления версиями БД
         val dbHelper = DBHelper(context)
@@ -64,6 +65,12 @@ class Account : Fragment() {
 
         val tvDisount = view.findViewById<TextView>(R.id.tvDisount)
         tvDisount.setText("Ваша скидка: $curDayDiscount%")
+
+
+        val btn_cheat = view.findViewById<Button>(R.id.btn_cheat)
+        btn_cheat.setOnClickListener {
+            context?.deleteDatabase("db")
+        }
 
         return view
 

@@ -23,7 +23,6 @@ class Explore : Fragment() {
             inflater: LayoutInflater, container: ViewGroup?,
             savedInstanceState: Bundle?,
     ): View? {
-        Toast.makeText(requireContext(), "Re", Toast.LENGTH_SHORT).show()
 
 
 
